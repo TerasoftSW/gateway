@@ -1,0 +1,23 @@
+server:
+  port: 8080
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: servicesbc-service
+          uri: lb://servicesbc-service
+          predicates:
+            - Path=/legalAdvices/**
+            - Path=/customLegalCases/**
+        - id: userprofile-service
+          uri: lb://userprofile-service
+          predicates:
+            - Path=/lawyers/**
+            - Path=/customers/**
