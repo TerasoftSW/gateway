@@ -1,0 +1,8 @@
+services:
+  gateway-deploy:
+    image: gateway-deploy
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
